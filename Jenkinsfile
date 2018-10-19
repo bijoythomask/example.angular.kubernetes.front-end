@@ -18,7 +18,6 @@
     //     sh 'ng build'
     //   }
     // }
-<<<<<<< HEAD
 //     stage('Package') {
 //       steps {
 //         script {
@@ -41,18 +40,6 @@ pipeline {
                     customImage.push()
                 }
             }
-=======
-    stage('Package') {
-      agent {
-        docker { 
-          image 'jenkinsci/blueocean'
-          args '-u root -v /var/run/docker.sock:/var/run/docker.sock' 
-          }
-      }
-      steps {
-        script {
-          docker.build("nginx-fe")
->>>>>>> 404951da4ad0c0bbc6593c988d256ca6744243c0
         }
     }
 }
