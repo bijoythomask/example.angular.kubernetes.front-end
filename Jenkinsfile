@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'johnpapa/angular-cli'
-      args '-p 80:3000'
+      args '-p 80:3000 -v /var/run/docker.sock:/var/run/docker.sock'
     }
 
   }
@@ -21,7 +21,7 @@ pipeline {
     stage('Package') {
       steps {
         script {
-        docker.build("nginx-fe")
+          docker.build("nginx-fe")
         }
       }
     }
