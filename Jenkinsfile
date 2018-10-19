@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'johnpapa/angular-cli'
-      args '-p 80:3000 -v /var/run/docker.sock:/var/run/docker.sock'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
 
   }
@@ -12,12 +12,12 @@ pipeline {
   }
 
   stages {
-    stage('Build') {
-      steps {
-        sh 'npm install'
-        sh 'ng build'
-      }
-    }
+    // stage('Build') {
+    //   steps {
+    //     sh 'npm install'
+    //     sh 'ng build'
+    //   }
+    // }
     stage('Package') {
       steps {
         script {
