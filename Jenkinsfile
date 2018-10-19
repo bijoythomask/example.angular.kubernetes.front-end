@@ -8,7 +8,7 @@ pipeline {
   stages {
 
     stage('Build') {
-      
+
       agent {
         docker {
           image 'johnpapa/angular-cli'
@@ -33,7 +33,7 @@ pipeline {
 
         script {
           def customImage = docker.build("nginx-fe:${env.BUILD_ID}")
-          customImage.push()
+          //customImage.push()
         }
       }
     }
