@@ -19,6 +19,7 @@ pipeline {
       }
     }
     stage('Package') {
+      agent none
       steps {
         sh 'docker build .'
       }
