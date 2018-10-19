@@ -8,28 +8,33 @@ pipeline {
   stages {
 
     stage('Build') {
-        agent {
-          docker {
-            image 'johnpapa/angular-cli'
-          }
+      
+      agent {
+        docker {
+          image 'johnpapa/angular-cli'
         }
+      }
 
       steps {
         echo 'Building the angular project.'
         sh 'npm install'
         sh 'ng build'
+        stash includes: 'dist/**/*', name: 'angular-dist'
       }
     }
     
     stage('Build image') {
+
       steps {
 
-          echo 'Starting to build docker image'
+        unstash 'angular-dist'
 
-          script {
-              def customImage = docker.build("nginx-fe:${env.BUILD_ID}")
-              customImage.push()
-          }
+        echo 'Starting to build docker image'
+
+        script {
+          def customImage = docker.build("nginx-fe:${env.BUILD_ID}")
+          customImage.push()
+        }
       }
     }
   }
