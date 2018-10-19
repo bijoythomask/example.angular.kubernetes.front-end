@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'node:8-alpine'
+      image 'johnpapa/angular-cli'
       args '-p 80:3000'
     }
 
