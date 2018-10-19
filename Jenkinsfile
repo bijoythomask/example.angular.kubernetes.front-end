@@ -7,8 +7,7 @@ pipeline {
 
   stages {
 
-    stages {
-      stage('Build') {
+    stage('Build') {
         agent {
           docker {
             image 'johnpapa/angular-cli'
@@ -21,7 +20,7 @@ pipeline {
         sh 'ng build'
       }
     }
-
+    
     stage('Build image') {
       steps {
 
@@ -34,5 +33,5 @@ pipeline {
       }
     }
   }
-}
+
 }
