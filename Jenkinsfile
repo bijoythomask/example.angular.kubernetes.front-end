@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Package') {
       steps {
-        sh 'docker build .'
+        docker.build("nginx-fe")
       }
     }
   }
