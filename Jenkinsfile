@@ -18,5 +18,10 @@ pipeline {
         sh 'ng build'
       }
     }
+    stage('Package') {
+      steps {
+        sh 'docker build .'
+      }
+    }
   }
 }
