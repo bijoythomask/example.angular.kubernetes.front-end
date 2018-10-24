@@ -25,7 +25,7 @@ pipeline {
         unstash 'angular-dist'
         echo 'Starting to build docker image'
         script {
-           docker.withRegistry('172.20.168.51:32000') {
+           docker.withRegistry('localhost:32000') {
             def customImage = docker.build("nginx-fe:${env.BUILD_ID}")
             customImage.push()
            }
