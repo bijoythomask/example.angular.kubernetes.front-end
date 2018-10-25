@@ -17,12 +17,12 @@ pipeline {
         echo 'Building the angular project.'
         sh 'npm install'
         sh 'ng build'
-        stash(includes: 'dist/**/*', name: 'angular-dist')
+        stash(includes: 'dist/**/*', name: 'stash-dist')
       }
     }
     stage('Build image') {
       steps {
-        unstash 'angular-dist'
+        unstash 'stash-dist'
         echo 'Starting to build docker image'
         script {
            docker.withRegistry('http://localhost:32000') {
