@@ -4,7 +4,9 @@ pipeline {
 
   environment {
     CI = 'true'
+    IMAGE_BUILD_NUMBER=${env.BUILD_ID}
   }
+  
   stages {
     stage('Build') {
       agent {
@@ -40,11 +42,15 @@ pipeline {
         git 'https://github.com/bijoythomask/example.kubernates.config.git'
 
         echo 'Deploying front-end objects and service'
-        sh 'kubectl apply -f front-end/front-end.deployment.yaml'
-        sh 'kubectl apply -f front-end/front-end.service.yaml'
-        
-        echo 'Deploying Ingress service'
-        sh 'kubectl apply -f ingress.yaml'
+        // sh 'kubectl apply -f front-end/front-end.deployment.yaml'
+        // sh 'kubectl apply -f front-end/front-end.service.yaml'        
+        // echo 'Deploying Ingress service'
+        // sh 'kubectl apply -f ingress.yaml'
+        kubernetesDeploy(
+          configs: 'front-end/front-end.deployment.yaml,front-end/front-end.service.yaml,ingress.yaml',        
+          enableConfigSubstitution: true,          
+          kubeconfigId: 'ubuntu-virtual-machine'          
+        )
        
       }
     }
