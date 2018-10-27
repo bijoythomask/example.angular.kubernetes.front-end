@@ -4,7 +4,7 @@ pipeline {
 
   environment {
     CI = 'true'
-    IMAGE_BUILD_NUMBER=env.BUILD_ID
+    IMAGE_BUILD_NUMBER="$env.BUILD_ID"
   }
   
   stages {
