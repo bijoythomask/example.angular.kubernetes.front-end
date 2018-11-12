@@ -1,6 +1,6 @@
 pipeline {
   
-  agent 'master'
+  agent any
 
   environment {
     CI = 'true'
@@ -23,7 +23,7 @@ pipeline {
       }
     }
     stage('Build image') {
-      agent 'master'
+      agent { label 'master' }
       steps {        
         unstash 'stash-dist'
         echo 'Starting to build docker image'
