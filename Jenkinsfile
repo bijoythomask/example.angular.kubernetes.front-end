@@ -1,6 +1,6 @@
 pipeline {
   
-  agent any
+  agent 'jenkins-slave'
 
   environment {
     CI = 'true'
@@ -23,7 +23,8 @@ pipeline {
       }
     }
     stage('Build image') {
-      steps {
+      agent 'master'
+      steps {        
         unstash 'stash-dist'
         echo 'Starting to build docker image'
         script {
