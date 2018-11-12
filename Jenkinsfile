@@ -1,6 +1,6 @@
 pipeline {
   
-  agent 'jenkins-slave'
+  agent 'master'
 
   environment {
     CI = 'true'
